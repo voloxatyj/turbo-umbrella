@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+@import "./formsPage.scss";
+@import "./thirdForm.scss";
+@import "./listPage.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s linear;
+  font-family: 'Libre Baskerville', serif;
+}

@@ -1,0 +1,81 @@
+// Header
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  color: rgba(227, 233, 218);
+  background-color: #7952b3;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 10%);
+}
+
+// Form Page
+.map-container {
+  width: max-width;
+  height: 450px;
+  border: 2px outset;
+  border-radius: 5px;
+  padding: 1px;
+  margin-bottom: 20px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  padding: 10px;
+  margin: 10px;
+  border: 2px #6c757d solid;
+  border-radius: 10px;
+  width: 40%;
+}
+
+// Forms
+.firstForm, .secondForm {
+  display: grid;
+  justify-content: center;
+}
+
+.firstForm-row, .secondForm-row {
+  display: inherit;
+  justify-items: center;
+}
+
+.secondForm {
+
+	& .image-container {
+		display: grid;
+		border: 2px solid grey;
+		border-radius: 10px;
+		background-color: #f8f9fa;
+		min-height: 10em;
+	
+		& .input-image {
+			display: inherit;
+		}
+	}
+
+	.render-image {
+		max-width: 360px;
+		max-height: 360px;
+	}
+}
+
+textarea.form-control {
+  min-height: 130px;
+}
+
+.btn-container {
+  width: 100%;
+  display: inherit;
+  justify-content: center;
+}
+
+@media (max-width: 576px) {
+  .col-xs-4 {
+    flex: 0 0 83.33333333%;
+    max-width: 83.33333333%;
+  }
+}

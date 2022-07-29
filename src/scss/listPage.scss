@@ -1,0 +1,35 @@
+.card-container {
+	& .card {
+		display: grid;
+		box-shadow: 5px 5px 20px black;
+		max-width: inherit;
+		border: 1px solid #6c757d;
+		grid-template-columns: 20em 2fr;
+		grid-template-rows: 1fr;
+		transition: all .2s ease-in-out;
+	
+		&:hover {
+			transform: scale(1.01);
+		}
+	
+		& .card-image {
+				display: inherit;
+				align-items: center;
+		}
+	
+		& .card-body {
+				display: inherit;
+				align-content: center;
+				justify-items: end;
+	
+			& .fullName, .report_subject, .email {
+				text-align: end;
+			}
+	
+			& .card-email {
+				color: black !important;
+				text-decoration: none !important;
+			}
+		}
+	}
+}
