@@ -19,7 +19,7 @@ export const FormPage: React.FC = (): JSX.Element => {
   return (
 		<>
 			<Header />
-			{/* {(tab_form.startsWith("first") || tab_form.startsWith("second")) && <Map />} */}
+			{(tab_form.startsWith("first") || tab_form.startsWith("second")) && <Map />}
 			<div className="main-container" 
 				style={{height: tab_form.startsWith("third") ? "90vh": "",
 				alignItems: tab_form.startsWith("third") ? "center" : "none"
