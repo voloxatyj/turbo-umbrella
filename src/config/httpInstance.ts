@@ -10,7 +10,8 @@ enum StatusCode {
 
 const headers: Readonly<Record<string, string | boolean>> = {
 	"Accept": "application/json",
-	"Content-Type": "application/json; charset=utf-8"
+	"Content-Type": "application/json; charset=utf-8",
+	"Access-Control-Allow-Origin": "*"
 };
 
 class Http {
