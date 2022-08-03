@@ -8,7 +8,7 @@ import { getBase64 } from "../../helpers/getBase64";
 import { FormInput } from "../FormInput";
 
 export const SecondForm: React.FC = (): JSX.Element => {
-  const [userInfo, setUserInfo] = useState<IUserInfo>({ company: "", position: "", aboutMe: "", photo_url: "", photo_hash: "", photo_ext: "", photo: {} });
+  const [userInfo, setUserInfo] = useState<IUserInfo>({ company: "", position: "", about: "", photo_url: "", photo_hash: "", photo_ext: "", photo: {} });
   const [, updateCookie] = useCookie();
   const { state: { members }, dispatch } = useContext(Context);
 
@@ -62,8 +62,8 @@ export const SecondForm: React.FC = (): JSX.Element => {
 						<label htmlFor="aboutMe">About Me</label>
 						<textarea
 							id="aboutMe"
-							className={`form-control ${!!userInfo.aboutMe ? "is-valid" : ""}`}
-							onChange={(e) =>setUserInfo({ ...userInfo, aboutMe: e.target.value })}
+							className={`form-control ${!!userInfo.about ? "is-valid" : ""}`}
+							onChange={(e) =>setUserInfo({ ...userInfo, about: e.target.value })}
 						></textarea>
 					</div>
 					<div className="image-container">

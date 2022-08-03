@@ -47,7 +47,7 @@ export interface IUser {
 }
 
 export interface IUserInfo {
-	aboutMe?: string;
+	about?: string;
 	company?: string;
 	position?: string;
 	photo_url?: string;
