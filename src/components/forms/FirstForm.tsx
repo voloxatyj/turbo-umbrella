@@ -32,8 +32,8 @@ export const FirstForm: React.FC = (): JSX.Element => {
 		setErrors(get_errors);
 		const checkErrors = Object.values(get_errors).every((error) => !error);
 		if (!checkErrors) return;
-		const member = await AddMember(user);
-		dispatch(Add_Member(member as IMember));
+		AddMember(user);
+		dispatch(Add_Member(user as IMember));
 		dispatch(Set_TabForm("second"));
 		setCookie("second", 1);
 	};

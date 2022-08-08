@@ -16,7 +16,7 @@ export const ListMembersPage: React.FC = (): JSX.Element => {
 						<div className="card-image">
 							<img
 								className="card-img"
-								src={member.photo_url || member.photo_hash || sceleton}
+								src={member.photo_hash || member.photo_url || sceleton}
 								alt={`${member.firstname} ${member.lastname}`}
 							/>
 						</div>

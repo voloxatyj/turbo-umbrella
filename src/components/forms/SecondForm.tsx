@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import { Context } from "../../context/useContext";
 import { useCookie } from "../../hooks/useCookie";
-import { updateMember } from "../../services/api.service";
-import { Set_TabForm, Update_Member } from "../../context/reducer";
+import { updateMember, getAllMembers } from "../../services/api.service";
+import { Set_TabForm, Update_Member, Set_Members } from "../../context/reducer";
 import { IUserInfo } from "../../types/interfaces";
 import { getBase64 } from "../../helpers/getBase64";
 import { FormInput } from "../FormInput";
@@ -11,6 +11,15 @@ export const SecondForm: React.FC = (): JSX.Element => {
   const [userInfo, setUserInfo] = useState<IUserInfo>({ company: "", position: "", about: "", photo_url: "", photo_hash: "", photo_ext: "", photo: {} });
   const [, updateCookie] = useCookie();
   const { state: { members }, dispatch } = useContext(Context);
+
+	async function getData() {
+    const members = await getAllMembers();
+    dispatch(Set_Members(members));
+  };
+  
+  useMemo(() => {
+    getData();
+  }, []);
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement> ) => setUserInfo({ ...userInfo, [event.target.id]: event.target.value });
 
@@ -30,6 +39,7 @@ export const SecondForm: React.FC = (): JSX.Element => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 		const id = members[members.length - 1].id;
+		debugger
     if (id) {
 			updateMember(id, userInfo);
       dispatch(Update_Member(id, userInfo));
