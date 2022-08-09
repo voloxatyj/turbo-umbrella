@@ -28,7 +28,6 @@ export function stateReducer(state: IState, action: Actions): IState {
       return { ...state, members };
       
       default:
-      debugger
       return state;
   }
 }

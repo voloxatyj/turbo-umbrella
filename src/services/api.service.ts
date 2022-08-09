@@ -1,5 +1,5 @@
 import { http, headers } from "../config/httpInstance";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import config from "../config/config";
 import { ICountry, IMember, IUserInfo } from "../types/interfaces";
 
@@ -30,7 +30,19 @@ export const AddMember = async (user: IMember): Promise<IMember | any> => {
     });
 };
 
-export const updateMember = async (id: number, userInfo: IUserInfo):Promise<IMember> => {
-	const {	data: { member } } = await http.patch<IUserInfo, AxiosResponse>(`/members/${id}`, userInfo);
-	return member;
+export const updateMember = async (id: number, userInfo: IUserInfo):Promise<IMember | any> => {
+	const Config = {
+    method: 'patch',
+    url: `${config.baseUrl}/members/${id}`,
+    headers,
+    data: userInfo,
+  };
+
+  return axios(Config)
+    .then(function (response) {
+      return { message: response.data };
+    })
+    .catch(function (error) {
+      return { error: error.response.data };
+    });
 };

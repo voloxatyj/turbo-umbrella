@@ -17,6 +17,7 @@ export const SecondForm: React.FC = (): JSX.Element => {
     photo_ext: '',
     photo: {},
   });
+  const [imgError, setImgError] = useState('');
   const [, updateCookie] = useCookie();
   const {
     state: { members },
@@ -29,6 +30,7 @@ export const SecondForm: React.FC = (): JSX.Element => {
   const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       const photo_hash = await getBase64(event.target.files[0]);
+      setImgError('');
       setUserInfo({
         ...userInfo,
         photo: event.target.files[0].name,
@@ -39,15 +41,21 @@ export const SecondForm: React.FC = (): JSX.Element => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const id = members[members.length - 1].id;
     if (id) {
-      updateMember(id, userInfo);
+      const { error } = await updateMember(id, userInfo);
+      if (error) {
+        setImgError(
+          'Image must have a valid type. Such like .png, .jpeg, .jpg',
+        );
+        return;
+      }
       dispatch(Update_Member(id, userInfo));
-      dispatch(Set_TabForm('third'));
-      updateCookie('third');
     }
+    dispatch(Set_TabForm('third'));
+    updateCookie('third');
   };
 
   return (
@@ -106,6 +114,11 @@ export const SecondForm: React.FC = (): JSX.Element => {
           </div>
         </div>
       </form>
+      {imgError && (
+        <div className='alert alert-danger' role='alert'>
+          {imgError}
+        </div>
+      )}
     </>
   );
 };
