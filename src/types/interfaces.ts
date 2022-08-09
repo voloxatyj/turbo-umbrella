@@ -64,6 +64,7 @@ export interface IError {
 	country_id: boolean;
 	phone: boolean;
 	email: boolean;
+	request: string;
 }
 
 export interface ICountry {

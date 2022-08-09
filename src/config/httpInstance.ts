@@ -8,7 +8,7 @@ enum StatusCode {
 	InternalServerError = 500,
 }
 
-const headers: Readonly<Record<string, string | boolean>> = {
+export const headers: Readonly<Record<string, string | boolean>> = {
 	"Accept": "application/json",
 	"Content-Type": "application/json; charset=utf-8",
 	"Access-Control-Allow-Origin": "*"

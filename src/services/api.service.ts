@@ -1,5 +1,6 @@
-import { http } from "../config/httpInstance";
-import { AxiosResponse } from "axios";
+import { http, headers } from "../config/httpInstance";
+import axios, { AxiosResponse } from "axios";
+import config from "../config/config";
 import { ICountry, IMember, IUserInfo } from "../types/interfaces";
 
 export const getCountries = async (): Promise<ICountry[]> => {
@@ -12,9 +13,21 @@ export const getAllMembers = async (): Promise<IMember[]> => {
 	return members;
 };
 
-export const AddMember = async (user: IMember): Promise<IMember> => {
-	const {	data: { member } } = await http.post<IMember, AxiosResponse>("/members", user);
-	return member;
+export const AddMember = async (user: IMember): Promise<IMember | any> => {
+	const Config = {
+    method: 'post',
+    url: `${config.baseUrl}/members`,
+    headers,
+    data: user,
+  };
+
+  return axios(Config)
+    .then(function (response) {
+      return { member: response.data }; 
+    })
+    .catch(function (error) {
+      return { error: error.response.data }; 
+    });
 };
 
 export const updateMember = async (id: number, userInfo: IUserInfo):Promise<IMember> => {

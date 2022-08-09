@@ -12,15 +12,6 @@ export const SecondForm: React.FC = (): JSX.Element => {
   const [, updateCookie] = useCookie();
   const { state: { members }, dispatch } = useContext(Context);
 
-	async function getData() {
-    const members = await getAllMembers();
-    dispatch(Set_Members(members));
-  };
-  
-  useMemo(() => {
-    getData();
-  }, []);
-
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement> ) => setUserInfo({ ...userInfo, [event.target.id]: event.target.value });
 
   const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +30,6 @@ export const SecondForm: React.FC = (): JSX.Element => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 		const id = members[members.length - 1].id;
-		debugger
     if (id) {
 			updateMember(id, userInfo);
       dispatch(Update_Member(id, userInfo));

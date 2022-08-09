@@ -15,7 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export const FirstForm: React.FC = (): JSX.Element => {
   const [user, setUser] = useState<IUser>({ firstname: "", lastname: "", birthdate: dayjs(new Date()).format("YYYY-MM-DD"), report_subject: "", phone: "", email: "", country_id: null });
-  const [errors, setErrors] = useState<IError>({ firstname: false, lastname: false,	birthdate: false,	report_subject: false, country_id: false,	phone: false,	email: false });
+  const [errors, setErrors] = useState<IError>({ firstname: false, lastname: false,	birthdate: false,	report_subject: false, country_id: false,	phone: false,	email: false, request: "" });
   const { state: { members, countries }, dispatch } = useContext(Context);
 	const [, setCookie] = useCookie();
 	const [todayDate, setTodayDate] = useState(true);
@@ -30,12 +30,19 @@ export const FirstForm: React.FC = (): JSX.Element => {
 		if (!user.country_id) return setErrors({ ...errors, country_id: true });
 		const get_errors = await checkDate(user.birthdate, errors);
 		setErrors(get_errors);
+		Reflect.deleteProperty(get_errors, "request");
 		const checkErrors = Object.values(get_errors).every((error) => !error);
 		if (!checkErrors) return;
-		AddMember(user);
-		dispatch(Add_Member(user as IMember));
-		dispatch(Set_TabForm("second"));
-		setCookie("second", 1);
+		const { error, member } = await AddMember(user);
+		if (member) {
+			dispatch(Add_Member(member as IMember));
+			dispatch(Set_TabForm("second"));
+			setCookie("second", 1);
+			return;
+		}
+		if (error) {
+			setErrors({ ...errors, request: error.error });
+		}
 	};
 
   return (
@@ -139,8 +146,8 @@ export const FirstForm: React.FC = (): JSX.Element => {
 					<FormInput
 						onChangeHandler={onChangeHandler}
 						classNameDiv="col-xs-4 col-sm-8 col-md-10 col-lg-12 mb-3"
-						error={errors.email}
-						error_value="Email is not valid"
+						error={errors.email || !!errors.request}
+						error_value={errors.request || "Email is not valid"}
 						value={user.email}
 						field_id="email"
 						field_value="Your email"

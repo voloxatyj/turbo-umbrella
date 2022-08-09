@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../context/useContext";
 import { useCookie } from "../hooks/useCookie";
 import { Set_TabForm } from "../context/reducer";
-import Map from '../components/Map';
-import { FirstForm } from '../components/forms/FirstForm';
-import { SecondForm } from '../components/forms/SecondForm';
+import Map from "../components/Map";
+import { FirstForm } from "../components/forms/FirstForm";
+import { SecondForm } from "../components/forms/SecondForm";
 import { ThirdForm } from "../components/forms/ThirdForm";
 import { Header } from "../components/Header";
 
