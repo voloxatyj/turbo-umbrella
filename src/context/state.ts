@@ -7,7 +7,7 @@ export interface IState {
 }
 
 export const initialState: IState = {
-    members: [],
-    countries: [],
-    tab_form: ""
+	members: [],
+	countries: [],
+	tab_form: ""
 };

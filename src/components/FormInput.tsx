@@ -1,23 +1,25 @@
-import { IFormInput } from "../types/interfaces";
-import { Notifications } from "./Notifications";
+import { IFormInput } from '../types/interfaces';
+import { Notifications } from './Notifications';
 
 export const FormInput: React.FC<IFormInput> = ({
-	onChangeHandler,
-	classNameDiv,
-	error,
+  onChangeHandler,
+  classNameDiv,
+  error,
   error_value,
-	value,
-	field_id,
-	field_value,
-  notification_disabled
+  value,
+  field_id,
+  field_value,
+  notification_disabled,
 }: IFormInput): JSX.Element => (
   <>
     <div className={classNameDiv}>
       <label htmlFor={field_id}>{field_value}</label>
       <input
         onChange={onChangeHandler}
-        type="text"
-        className={`form-control ${!value ? "" : error ? "is-invalid" : "is-valid"}`}
+        type='text'
+        className={`form-control ${
+          !value ? '' : error ? 'is-invalid' : 'is-valid'
+        }`}
         id={field_id}
         placeholder={field_value}
         value={value}
@@ -25,7 +27,7 @@ export const FormInput: React.FC<IFormInput> = ({
       />
       {!notification_disabled && (
         <Notifications
-          positive="Looks good!"
+          positive='Looks good!'
           negative={error_value}
           error={error}
         />
