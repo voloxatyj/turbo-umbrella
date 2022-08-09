@@ -47,10 +47,7 @@ export const SecondForm: React.FC = (): JSX.Element => {
     if (id) {
       const { error } = await updateMember(id, userInfo);
       if (error) {
-        setImgError(
-          'Image must have a valid type. Such like .png, .jpeg, .jpg',
-        );
-        return;
+        return setImgError(error);
       }
       dispatch(Update_Member(id, userInfo));
     }

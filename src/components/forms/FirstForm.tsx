@@ -63,7 +63,7 @@ export const FirstForm: React.FC = (): JSX.Element => {
       return;
     }
     if (error) {
-      setErrors({ ...errors, request: error.error });
+      setErrors({ ...errors, request: error });
     }
   };
 

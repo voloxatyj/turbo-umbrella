@@ -26,7 +26,7 @@ export const AddMember = async (user: IMember): Promise<IMember | any> => {
       return { member: response.data }; 
     })
     .catch(function (error) {
-      return { error: error.response.data }; 
+      return error.response.data; 
     });
 };
 
@@ -40,9 +40,9 @@ export const updateMember = async (id: number, userInfo: IUserInfo):Promise<IMem
 
   return axios(Config)
     .then(function (response) {
-      return { message: response.data };
+      return response.data;
     })
     .catch(function (error) {
-      return { error: error.response.data };
+      return error.response.data;
     });
 };
