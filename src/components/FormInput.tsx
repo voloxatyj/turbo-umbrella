@@ -23,7 +23,7 @@ export const FormInput: React.FC<IFormInput> = ({
         id={field_id}
         placeholder={field_value}
         value={value}
-        required
+        required={!notification_disabled}
       />
       {!notification_disabled && (
         <Notifications
