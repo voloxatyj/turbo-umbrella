@@ -15,7 +15,7 @@ export const SecondForm: React.FC = (): JSX.Element => {
     photo_url: '',
     photo_hash: '',
     photo_ext: '',
-    photo: {},
+    photo: '',
   });
   const [imgError, setImgError] = useState('');
   const [, updateCookie] = useCookie();
